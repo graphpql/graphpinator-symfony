@@ -1,5 +1,5 @@
 {
-  "name": "infinityloop-dev/graphpinator-symfony",
+  "name": "graphpql/graphpinator-symfony",
   "description": "Graphpinator adapters and addons for Symfony framework.",
   "homepage": "https://github.com/graphpql",
   "type": "library",
