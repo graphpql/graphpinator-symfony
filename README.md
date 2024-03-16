@@ -80,6 +80,9 @@ final class Schema extends BaseSchema
     public function __construct(Container $container)
     {
         parent::__construct($container, $container->getType('Query'), $container->getType('Mutation'));
+
+        // You may also configure the schema there
+        $this->addDescription("My GraphQL schema");
     }
 }
 ```
