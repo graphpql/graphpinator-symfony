@@ -10,7 +10,7 @@ This package includes adapters for various Graphpinator functionalities and a Sc
 
 Install package using composer
 
-```composer require infinityloop-dev/graphpinator-symfony```
+```composer require graphpql/graphpinator-symfony```
 
 ## How to use
 
