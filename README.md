@@ -14,6 +14,14 @@ Install package using composer
 
 ## How to use
 
+### Register a bundle
+
+Add a bundle entry to the `bundles.php`. Currently the bundle is only used for an access to the twig namespace.
+
+```php
+Graphpinator\Symfony\GraphpinatorBundle::class => ['all' => true],
+```
+
 ### Configure dependency injection
 
 At first we need to configure Symfony to find all our types and tag them, so we can inject them into our type registry.
