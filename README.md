@@ -171,12 +171,13 @@ final class DefaultGraphQlController extends GraphQLController
 
 ```
 
-The base controller handles 4 actions:
+The base controller handles 5 actions:
 
 - OPTIONS `/` to handle CORS
 - GET/POST `/`  which handles the GraphQL requests
 - GET `/schema`  which renders the schema in a GraphQL typesystem language
 - GET `/schema.graphql`  which returns the schema in a GraphQL typesystem language as a file attachment
+- GET `/ui`  which renders [GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql#readme), a graphical interface to interact with your schema.
 
 ### Adapters
 
