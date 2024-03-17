@@ -16,7 +16,7 @@ Install package using composer
 
 ### Register a bundle
 
-Add a bundle entry to the `bundles.php`. Currently the bundle is only used for an access to the twig namespace.
+Add a bundle entry to the `bundles.php`. Currently the bundle is only used for an access to the twig namespace, so this step can be ommited when the rendering actions will not be used.
 
 ```php
 Graphpinator\Symfony\GraphpinatorBundle::class => ['all' => true],
@@ -146,9 +146,37 @@ In the example above we used only the `default` schema, but the same principle c
 
 Simple version of a controller to execute GraphQL API requests against a given schema. It also includes a actions and templates for a schema overview and GraphiQL integration. It can be extended to alter its functionality (for example by overriding the `getEnabledModules` function) or it can serve as an inspiration to include the functionality in your own controllers.
 
+Create a custom controller in your application which inherits the functionalities from the provided one.
 
- # TODO
+```php
+<?php declare(strict_types = 1);
 
+namespace App\Controller\GraphQL;
+
+use App\GraphQL\Default\Schema;
+use Graphpinator\Symfony\GraphQLController;
+use Psr\Cache\CacheItemPoolInterface;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
+#[Route('/graphql/default', name: 'graphql_default_')]
+final class DefaultGraphQlController extends GraphQLController
+{
+    public function __construct(Schema $schema, LoggerInterface $logger, CacheItemPoolInterface $cache, UrlGeneratorInterface $urlGenerator)
+    {
+        parent::__construct($schema, $logger, $cache, $urlGenerator);
+    }
+}
+
+```
+
+The base controller handles 4 actions:
+
+- OPTIONS `/` to handle CORS
+- GET/POST `/`  which handles the GraphQL requests
+- GET `/schema`  which renders the schema in a GraphQL typesystem language
+- GET `/schema.graphql`  which returns the schema in a GraphQL typesystem language as a file attachment
 
 ### Adapters
 
