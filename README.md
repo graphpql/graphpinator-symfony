@@ -72,7 +72,7 @@ Create a `Schema` service.
 
 namespace App\GraphQL\Default;
 
-use App\GraphQl\Default\Container;
+use App\GraphQL\Default\Container;
 use Graphpinator\Typesystem\Schema as BaseSchema;
 
 final class Schema extends BaseSchema
