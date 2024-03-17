@@ -64,10 +64,12 @@ class GraphQLController extends AbstractController
     }
 
     #[Route('/ui', name: 'ui', methods: ['GET'])]
-    public function ui() : Response
+    public function ui(Request $request) : Response
     {
+        $graphQlRoute = \rtrim($request->get('_route'), 'ui') . 'graphql';
+
         return $this->render('@Graphpinator/ui.html.twig', [
-            'schemaUrl' => $this->urlGenerator->generate('graphql_default_graphql', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'schemaUrl' => $this->urlGenerator->generate($graphQlRoute, [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
     }
 
