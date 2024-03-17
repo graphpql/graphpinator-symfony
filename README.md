@@ -134,9 +134,9 @@ This service is than injected into the abstract type instead of the concrete typ
 Some more sophisticated applications may require to host multiple different GraphQL schemas with different purposes.
 In the example above we used only the `default` schema, but the same principle can be replicated and applied to any number of schemas within a single application.
 
-### GraphQLPresenter
+### GraphQLController
 
-Simple version of a presenter to execute GraphQL API requests against a given schema. It also includes a actions and templates for a schema overview and GraphiQL integration. It can be extended to alter its functionality (for example by overriding the `getEnabledModules` function) or it can serve as an inspiration to include the functionality in your own presenters.
+Simple version of a controller to execute GraphQL API requests against a given schema. It also includes a actions and templates for a schema overview and GraphiQL integration. It can be extended to alter its functionality (for example by overriding the `getEnabledModules` function) or it can serve as an inspiration to include the functionality in your own controllers.
 
 
  # TODO
