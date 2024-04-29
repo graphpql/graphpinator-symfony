@@ -28,10 +28,10 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class GraphQLController extends AbstractController
 {
     public function __construct(
-        private Schema $schema,
-        private LoggerInterface $logger,
-        private CacheItemPoolInterface $cache,
-        private UrlGeneratorInterface $urlGenerator,
+        protected Schema $schema,
+        protected LoggerInterface $logger,
+        protected CacheItemPoolInterface $cache,
+        protected UrlGeneratorInterface $urlGenerator,
     )
     {
     }
