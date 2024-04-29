@@ -7,7 +7,6 @@ namespace Graphpinator\Symfony;
 use Graphpinator\ErrorHandlingMode;
 use Graphpinator\Graphpinator;
 use Graphpinator\Module\ModuleSet;
-use Graphpinator\PersistedQueries\PersistedQueriesModule;
 use Graphpinator\Printer\HtmlVisitor;
 use Graphpinator\Printer\Printer;
 use Graphpinator\Printer\TextVisitor;
@@ -15,7 +14,6 @@ use Graphpinator\Printer\TypeKindSorter;
 use Graphpinator\Symfony\FileProvider;
 use Graphpinator\Symfony\RequestFactory;
 use Graphpinator\Typesystem\Schema;
-use Graphpinator\Upload\UploadModule;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -103,8 +101,8 @@ class GraphQLController extends AbstractController
     protected function getEnabledModules(Request $request) : ModuleSet
     {
         return new ModuleSet([
-            new UploadModule(new FileProvider($request)),
-            new PersistedQueriesModule($this->schema, new Psr16Cache($this->cache)),
+            //new UploadModule(new FileProvider($request)),
+            //new PersistedQueriesModule($this->schema, new Psr16Cache($this->cache)),
             //new MaxDepthModule(),
             //new MaxNodesModule(),
         ]);
