@@ -32,8 +32,8 @@ final class RequestFactory implements RequestFactoryInterface
         $contentType = $this->request->headers->get('Content-Type');
 
         if (\is_string($contentType) && \str_starts_with($contentType, 'multipart/form-data')) {
-            if ($method === 'POST' && \array_key_exists('operations', $this->request->toArray())) {
-                return $this->applyJsonFactory(Json::fromString($this->request->get('operations')));
+            if ($method === 'POST' && $this->request->getPayload()->has('operations')) {
+                return $this->applyJsonFactory(Json::fromString($this->request->getPayload()->get('operations')));
             }
 
             throw new InvalidMultipartRequest();
