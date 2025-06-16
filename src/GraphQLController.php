@@ -40,13 +40,8 @@ class GraphQLController extends AbstractController
     public function options() : Response
     {
         $response = new Response();
-        $response->headers->set('Access-Control-Allow-Credentials', 'true');
-        $response->headers->set('Access-Control-Allow-Origin', '*');
-        $response->headers->set('Access-Control-Allow-Methods', 'HEAD, GET, POST, OPTIONS');
-        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-        $response->headers->set('Access-Control-Max-Age', '86400');
 
-        return $response;
+        return $this->applyCorsHeaders($response);
     }
 
     #[Route(name: 'graphql', methods: ['GET', 'POST'])]
@@ -57,8 +52,9 @@ class GraphQLController extends AbstractController
             : ErrorHandlingMode::ALL;
         $graphpinator = new Graphpinator($this->schema, $errorHandling, $this->getEnabledModules($request), $this->logger);
         $requestFactory = new RequestFactory($request);
+        $response = new JsonResponse($graphpinator->run($requestFactory));
 
-        return new JsonResponse($graphpinator->run($requestFactory));
+        return $this->applyCorsHeaders($response);
     }
 
     #[Route('/ui', name: 'ui', methods: ['GET'])]
@@ -94,6 +90,17 @@ class GraphQLController extends AbstractController
             'Content-Disposition',
             $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, 'schema.graphql'),
         );
+
+        return $response;
+    }
+
+    protected function applyCorsHeaders(Response $response) : Response
+    {
+        $response->headers->set('Access-Control-Allow-Credentials', 'true');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'HEAD, GET, POST, OPTIONS');
+        $response->headers->set('Access-Control-Allow-Headers', '*');
+        $response->headers->set('Access-Control-Max-Age', '86400');
 
         return $response;
     }
