@@ -1,4 +1,4 @@
-# Graphpinator Symfony [![PHP](https://github.com/infinityloop-dev/graphpinator-symfony/workflows/PHP/badge.svg?branch=master)](https://github.com/infinityloop-dev/graphpinator-symfony/actions?query=workflow%3APHP) [![codecov](https://codecov.io/gh/infinityloop-dev/graphpinator-symfony/branch/master/graph/badge.svg)](https://codecov.io/gh/infinityloop-dev/graphpinator-symfony)
+# Graphpinator Symfony 
 
 :zap::globe_with_meridians::zap: Graphpinator adapters and addons for Symfony framework.
 
