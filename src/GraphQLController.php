@@ -4,20 +4,17 @@ declare(strict_types = 1);
 
 namespace Graphpinator\Symfony;
 
-use Graphpinator\ErrorHandlingMode;
 use Graphpinator\Graphpinator;
 use Graphpinator\Module\ModuleSet;
 use Graphpinator\Printer\HtmlVisitor;
 use Graphpinator\Printer\Printer;
 use Graphpinator\Printer\TextVisitor;
 use Graphpinator\Printer\TypeKindSorter;
-use Graphpinator\Symfony\FileProvider;
-use Graphpinator\Symfony\RequestFactory;
+use Graphpinator\Resolver\ErrorHandlingMode;
 use Graphpinator\Typesystem\Schema;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Cache\Psr16Cache;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,7 +42,7 @@ class GraphQLController extends AbstractController
     }
 
     #[Route(name: 'graphql', methods: ['GET', 'POST'])]
-    public function graphql(Request $request) : JsonResponse
+    public function graphql(Request $request) : Response
     {
         $errorHandling = $this->getParameter('kernel.debug') === true
             ? ErrorHandlingMode::OUTPUTABLE
@@ -60,7 +57,7 @@ class GraphQLController extends AbstractController
     #[Route('/ui', name: 'ui', methods: ['GET'])]
     public function ui(Request $request) : Response
     {
-        $graphQlRoute = \rtrim($request->get('_route'), 'ui') . 'graphql';
+        $graphQlRoute = \rtrim($request->attributes->get('_route'), 'ui') . 'graphql';
 
         return $this->render('@Graphpinator/ui.html.twig', [
             'schemaUrl' => $this->urlGenerator->generate($graphQlRoute, [], UrlGeneratorInterface::ABSOLUTE_URL),

@@ -17,15 +17,17 @@ final class FileProvider implements FileProviderInterface
     {
     }
 
+    #[\Override]
     public function getMap() : ?Json
     {
-        $map = $this->request->get('map');
+        $map = $this->request->request->get('map');
 
         return \is_string($map)
             ? Json::fromString($map)
             : null;
     }
 
+    #[\Override]
     public function getFile(string $key) : UploadedFile
     {
         $file = $this->request->files->get($key);

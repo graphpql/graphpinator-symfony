@@ -21,6 +21,7 @@ final class RequestFactory implements RequestFactoryInterface
     {
     }
 
+    #[\Override]
     public function create() : Request
     {
         $method = $this->request->getMethod();
@@ -41,11 +42,9 @@ final class RequestFactory implements RequestFactoryInterface
 
         switch ($contentType) {
             case 'application/graphql':
-                return new Request($this->request->getContent()
-                    ?? '');
+                return new Request($this->request->getContent());
             case 'application/json':
-                return $this->applyJsonFactory(Json::fromString($this->request->getContent()
-                    ?? '{}'));
+                return $this->applyJsonFactory(Json::fromString($this->request->getContent()));
             default:
                 $params = $this->request->query->all();
 

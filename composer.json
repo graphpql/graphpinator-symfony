@@ -11,18 +11,31 @@
     }
   ],
   "require": {
-    "infinityloop-dev/graphpinator": "^1.7",
-    "infinityloop-dev/graphpinator-printer": "^1.0",
-    "psr/simple-cache": "3.0",
-    "guzzlehttp/psr7": "^2.4.3"
+    "guzzlehttp/psr7": "^2.4.3",
+    "infinityloop-dev/graphpinator": "^2.0",
+    "infinityloop-dev/graphpinator-printer": "^2.0",
+    "psr/cache": "^3.0",
+    "psr/simple-cache": "^3.0",
+    "symfony/dependency-injection": "^7.3 || ^8.0",
+    "symfony/framework-bundle": "^8.0",
+    "symfony/http-kernel": "^7.3 || ^8.0",
+    "symfony/routing": "^8.0"
   },
   "require-dev": {
-    "infinityloop-dev/graphpinator-upload": "^1.0",
-    "infinityloop-dev/graphpinator-persisted-queries": "^1.0",
-    "phpunit/phpunit": "^9.3",
-    "infection/infection": "^0.27",
-    "infinityloop-dev/coding-standard": "^0.2",
-    "phpstan/phpstan": "^1.0"
+    "infinityloop-dev/graphpinator-upload": "^2.0",
+    "infinityloop-dev/graphpinator-persisted-queries": "^2.0",
+    "infinityloop-dev/graphpinator-constraint-directives": "^2.0",
+    "infection/infection": "^0.29",
+    "infinityloop-dev/graphpinator-tokenizer": "^1.3",
+    "phpstan/extension-installer": "^1.4",
+    "phpstan/phpstan": "^2.0",
+    "phpstan/phpstan-deprecation-rules": "^2.0",
+    "phpstan/phpstan-strict-rules": "^2.0",
+    "phpstan/phpstan-symfony": "^2.0",
+    "phpunit/phpunit": "^10.4",
+    "shipmonk/composer-dependency-analyser": "^1.8",
+    "thecodingmachine/phpstan-safe-rule": "^1.4",
+    "webthinx/codestyle": "^1.1"
   },
   "scripts": {
     "phpunit": "phpunit tests",
@@ -30,11 +43,12 @@
       "Composer\\Config::disableProcessTimeout",
       "infection -j$(nproc)"
     ],
-    "phpstan": "phpstan analyze --level 5 src",
-    "phpstan-next": "phpstan analyze --level 6 src",
+    "phpstan": "phpstan analyze --level 6 src",
+    "phpstan-next": "phpstan analyze --level 7 src",
     "phpstan-max": "phpstan analyze --level max src",
-    "codestyle": "phpcs --standard=vendor/infinityloop-dev/coding-standard/InfinityloopCodingStandard/ruleset.xml --extensions=php src tests",
-    "codestyle-fix": "phpcbf --standard=vendor/infinityloop-dev/coding-standard/InfinityloopCodingStandard/ruleset.xml --extensions=php src tests"
+    "codestyle": "phpcs --extensions=php src tests",
+    "codestyle-fix": "phpcbf --extensions=php src tests",
+    "dependencies": "composer-dependency-analyser"
   },
   "autoload": {
     "psr-4": {
@@ -46,10 +60,13 @@
       "Graphpinator\\Symfony\\Tests\\": "tests/"
     }
   },
+  "minimum-stability": "RC",
   "config": {
+    "sort-packages": true,
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true,
-      "infection/extension-installer": true
+      "infection/extension-installer": true,
+      "phpstan/extension-installer": true
     }
   }
 }

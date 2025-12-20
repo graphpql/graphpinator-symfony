@@ -22,36 +22,43 @@ final class ConstraintDirectiveAccessor implements ConstraintDirectiveAccessorCo
     {
     }
 
+    #[\Override]
     public function getString() : StringConstraintDirective
     {
         return $this->container->get(StringConstraintDirective::class);
     }
 
+    #[\Override]
     public function getInt() : IntConstraintDirective
     {
         return $this->container->get(IntConstraintDirective::class);
     }
 
+    #[\Override]
     public function getFloat() : FloatConstraintDirective
     {
         return $this->container->get(FloatConstraintDirective::class);
     }
 
+    #[\Override]
     public function getList() : ListConstraintDirective
     {
         return $this->container->get(ListConstraintDirective::class);
     }
 
+    #[\Override]
     public function getListInput() : ListConstraintInput
     {
         return $this->container->get(ListConstraintInput::class);
     }
 
+    #[\Override]
     public function getObject() : ObjectConstraintDirective
     {
         return $this->container->get(ObjectConstraintDirective::class);
     }
 
+    #[\Override]
     public function getObjectInput() : ObjectConstraintInput
     {
         return $this->container->get(ObjectConstraintInput::class);
