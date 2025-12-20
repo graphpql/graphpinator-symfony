@@ -44,7 +44,9 @@ class GraphQLController extends AbstractController
     #[Route(name: 'graphql', methods: ['GET', 'POST'])]
     public function graphql(Request $request) : Response
     {
-        $errorHandling = $this->getParameter('kernel.debug') === true
+        $debugMode = $this->getParameter('kernel.debug') === true;
+        Graphpinator::$validateSchema = $debugMode;
+        $errorHandling = $debugMode
             ? ErrorHandlingMode::OUTPUTABLE
             : ErrorHandlingMode::ALL;
         $graphpinator = new Graphpinator($this->schema, $errorHandling, $this->getEnabledModules($request), $this->logger);
