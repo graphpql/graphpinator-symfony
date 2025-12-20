@@ -2,13 +2,13 @@ name: PHP
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths-ignore:
     - '**.md'
     - '**.dia'
     - '**.svg'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths-ignore:
     - '**.md'
     - '**.dia'
