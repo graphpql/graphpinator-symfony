@@ -36,6 +36,7 @@
     "phpstan/phpstan-symfony": "^2.0",
     "phpunit/phpunit": "^10.4",
     "shipmonk/composer-dependency-analyser": "^1.8",
+    "symfony/twig-bundle": "^7.3 || ^8.0",
     "thecodingmachine/phpstan-safe-rule": "^1.4",
     "webthinx/codestyle": "^1.1"
   },
