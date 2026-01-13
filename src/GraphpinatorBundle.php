@@ -8,6 +8,7 @@ use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 final class GraphpinatorBundle extends AbstractBundle
 {
+    #[\Override]
     public function getPath() : string
     {
         return \dirname(__DIR__);
