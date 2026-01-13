@@ -43,6 +43,7 @@ final class GraphpinatorExtensionTest extends TestCase
 
         self::assertNotNull($graphpinatorPath);
         self::assertStringEndsWith('/Resources/views', $graphpinatorPath);
+        self::assertDirectoryExists($graphpinatorPath);
     }
 
     public function testLoadDoesNotThrowException() : void
