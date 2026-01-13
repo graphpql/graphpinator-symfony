@@ -11,15 +11,15 @@ use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 final class GraphpinatorBundle extends AbstractBundle
 {
     #[\Override]
-    public function getPath(): string
+    public function getPath() : string
     {
         return \dirname(__DIR__);
     }
 
     #[\Override]
-    public function getContainerExtension(): ?ExtensionInterface
+    public function getContainerExtension() : ExtensionInterface
     {
-        if (null === $this->extension) {
+        if ($this->extension === null) {
             $this->extension = new GraphpinatorExtension();
         }
 

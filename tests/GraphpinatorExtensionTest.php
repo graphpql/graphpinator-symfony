@@ -34,9 +34,11 @@ final class GraphpinatorExtensionTest extends TestCase
 
         // Verify that the Graphpinator namespace is registered
         $graphpinatorPath = null;
+
         foreach ($paths as $path => $namespace) {
             if ($namespace === 'Graphpinator') {
                 $graphpinatorPath = $path;
+
                 break;
             }
         }
