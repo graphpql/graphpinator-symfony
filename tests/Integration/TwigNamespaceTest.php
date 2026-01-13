@@ -13,7 +13,7 @@ use Twig\Loader\FilesystemLoader;
 
 final class TwigNamespaceTest extends TestCase
 {
-    private Kernel $kernel;
+    private ?Kernel $kernel = null;
 
     protected function setUp() : void
     {
@@ -57,6 +57,10 @@ final class TwigNamespaceTest extends TestCase
 
     protected function tearDown() : void
     {
+        if ($this->kernel === null) {
+            return;
+        }
+        
         $cacheDir = $this->kernel->getCacheDir();
         $this->kernel->shutdown();
         
@@ -122,13 +126,24 @@ final class TwigNamespaceTest extends TestCase
             return;
         }
         
-        $files = \array_diff(\scandir($dir), ['.', '..']);
+        $files = \scandir($dir);
+        
+        if ($files === false) {
+            return;
+        }
+        
+        $files = \array_diff($files, ['.', '..']);
         
         foreach ($files as $file) {
             $path = $dir . '/' . $file;
-            \is_dir($path) ? $this->removeDirectory($path) : \unlink($path);
+            
+            if (\is_dir($path)) {
+                $this->removeDirectory($path);
+            } elseif (\is_file($path)) {
+                @\unlink($path);
+            }
         }
         
-        \rmdir($dir);
+        @\rmdir($dir);
     }
 }
